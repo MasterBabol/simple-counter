@@ -64,7 +64,7 @@ module simple_counter
     wire                                w_ctl_wvalid        ;
     wire                                w_ctl_wready        ;
     wire    [axi_addr_width - 1:0]      w_ctl_raddr         ;
-    reg     [32 - 1:0]                  r_ctl_rdata         ;
+    wire    [32 - 1:0]                  w_ctl_rdata         ;
     wire                                w_ctl_rvalid        ;
     wire                                w_ctl_rready        ;
 
@@ -103,7 +103,7 @@ module simple_counter
         .acc__wvalid        (w_ctl_wvalid       ),
         .acc__wready        (w_ctl_wready       ),
         .acc__raddr         (w_ctl_raddr        ),
-        .acc__rdata         (r_ctl_rdata        ),
+        .acc__rdata         (w_ctl_rdata        ),
         .acc__rvalid        (w_ctl_rvalid       ),
         .acc__rready        (w_ctl_rready       )
     );
@@ -115,7 +115,7 @@ module simple_counter
 
     assign w_ctl_wready = 1'b1;
     assign w_ctl_rready = 1'b1;
-    assign r_ctl_rdata = r_counter;
+    assign w_ctl_rdata = r_counter;
 
     generate
         always @ (*)
